@@ -32,9 +32,7 @@ export default class HolbertonCourse {
 
   set students(students) {
     this._checkType(students, 'array', 'Students');
-    students.forEach((student) =>
-      this._checkType(student, 'string', 'Students')
-    );
+    students.forEach((student) => this._checkType(student, 'string', 'Students'));
     this._students = students;
   }
 
@@ -59,8 +57,8 @@ export default class HolbertonCourse {
 
     if (type === 'array') {
       if (
-        !Array.isArray(value) ||
-        !value.every((item) => typeof item === 'string')
+        !Array.isArray(value)
+        || !value.every((item) => typeof item === 'string')
       ) {
         throw new TypeError(errorMessage);
       }
