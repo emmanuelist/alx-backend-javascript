@@ -1,13 +1,19 @@
-const express = require('express');
+const request = require('request');
+const { expect } = require('chai');
 
-const app = express();
+describe('Integration Testing', () => {
+  describe('GET /', () => {
+    it('Code: 200 | Body: Welcome to the payment system', (done) => {
+      const options = {
+        url: 'http://localhost:7865',
+        method: 'GET',
+      };
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the payment system');
+      request(options, function (error, response, body) {
+        expect(response.statusCode).to.equal(200);
+        expect(body).to.equal('Welcome to the payment system');
+        done();
+      });
+    });
+  });
 });
-
-app.listen(7865, () => {
-  console.log('API available on localhost port 7865');
-});
-
-module.exports = app;
